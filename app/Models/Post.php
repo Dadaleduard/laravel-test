@@ -17,6 +17,8 @@ class Post extends Model
         'published_at',
     ];
 
+    protected $with = ['tags'];
+
     protected $casts = [
         'published_at' => 'datetime',
     ];
@@ -29,5 +31,10 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
